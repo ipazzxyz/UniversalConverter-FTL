@@ -19,8 +19,10 @@ private slots:
 
 private:
     QTextEdit *input;
-    QSpinBox *initial_base;
-    QPushButton *button;
     QTextEdit *output;
+    QPushButton *button;
     QSpinBox *final_base;
+    QSpinBox *initial_base;
+
+    void createAndShowWindow();
 };

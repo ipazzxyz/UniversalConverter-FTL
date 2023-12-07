@@ -4,61 +4,26 @@
 
 BigInt::BigInt(const uint64_t &initial_base, const std::string &s)
 {
-  if (initial_base == 0)
+  if (base_ < 2)
   {
-    throw std::runtime_error("Base 0, wtf?");
-  }
-  if (initial_base == 1)
-  {
-    throw std::runtime_error("Base 1, wtf?");
-  }
-  bool is_opened = false;
-  for (int i = 0; i < s.size(); ++i)
-  {
-    if (s[i] == '[')
-    {
-      if (is_opened)
-      {
-        throw std::runtime_error(std::to_string(i + 1) +
-                                 ": Bracket inside brackets");
-      }
-      is_opened = true;
-    }
-    else if (s[i] == ']')
-    {
-      if (!is_opened)
-      {
-        throw std::runtime_error(std::to_string(i + 1) +
-                                 ": There is no opening bracket");
-      }
-      is_opened = false;
-    }
-  }
-  if (is_opened)
-  {
-    throw std::runtime_error("The bracket is not closed");
+    throw std::runtime_error("Base should be greater than or equal to 2");
   }
 
-  for (uint64_t i = 0; i < size_; ++i)
-  {
-    digit_[i] = 0;
-  }
+  validateBrackets(s);
+
+  std::fill(digit_, digit_ + size_, 0);
 
   for (int64_t i = 0; i < s.size(); ++i)
   {
     BigInt digit = 0;
 
-    if (s[i] >= '0' && s[i] <= '9')
+    if (isdigit(s[i]))
     {
       digit = s[i] - '0';
     }
-    else if (s[i] >= 'A' && s[i] <= 'Z')
+    else if (isalpha(s[i]))
     {
-      digit = s[i] - 'A' + 10;
-    }
-    else if (s[i] >= 'a' && s[i] <= 'z')
-    {
-      digit = s[i] - 'a' + 10;
+      digit = std::toupper(s[i]) - 'A' + 10;
     }
     else if (s[i] == '[')
     {
@@ -90,19 +55,45 @@ BigInt::BigInt(const uint64_t &initial_base, const std::string &s)
     *this = *this * initial_base + digit;
   }
 }
+void BigInt::validateBrackets(const std::string &s) const
+{
+  bool is_opened = false;
+
+  for (uint32_t i = 0; i < s.size(); ++i)
+  {
+    if (s[i] == '[')
+    {
+      if (is_opened)
+      {
+        throw std::runtime_error(std::to_string(i + 1) +
+                                 ": Bracket inside brackets");
+      }
+      is_opened = true;
+    }
+    else if (s[i] == ']')
+    {
+      if (!is_opened)
+      {
+        throw std::runtime_error(std::to_string(i + 1) +
+                                 ": There is no opening bracket");
+      }
+      is_opened = false;
+    }
+  }
+
+  if (is_opened)
+  {
+    throw std::runtime_error("The bracket is not closed");
+  }
+}
+
 BigInt::BigInt()
 {
-  for (uint64_t i = 0; i < size_; ++i)
-  {
-    this->digit_[i] = 0;
-  }
+  std::fill(digit_, digit_ + size_, 0);
 }
 BigInt::BigInt(int64_t x)
 {
-  for (uint64_t i = 0; i < size_; ++i)
-  {
-    digit_[i] = 0;
-  }
+  std::fill(digit_, digit_ + size_, 0);
 
   uint64_t next = 0;
   while (x)
@@ -113,7 +104,7 @@ BigInt::BigInt(int64_t x)
 }
 BigInt::BigInt(const BigInt &other)
 {
-  for (uint64_t i = 0; i < size_; ++i)
+  for (int32_t i = 0; i < size_; ++i)
   {
     digit_[i] = other.digit_[i];
   }
@@ -121,22 +112,18 @@ BigInt::BigInt(const BigInt &other)
 
 BigInt &BigInt::operator=(const BigInt &other)
 {
-  for (uint64_t i = 0; i < size_; ++i)
-  {
-    digit_[i] = other.digit_[i];
-  }
-
+  std::copy(other.digit_, other.digit_ + size_, digit_);
   return *this;
 }
 
 BigInt &BigInt::operator+=(const BigInt &other)
 {
-  for (uint64_t i = 0; i < size_; ++i)
+  for (int32_t i = 0; i < size_; ++i)
   {
     digit_[i] += other.digit_[i];
   }
 
-  for (uint64_t i = 0; i < size_ - 1; ++i)
+  for (int32_t i = 0; i < size_ - 1; ++i)
   {
     if (digit_[i] >= base_)
     {
@@ -160,12 +147,12 @@ BigInt &BigInt::operator++()
 
 BigInt &BigInt::operator-=(const BigInt &other)
 {
-  for (uint64_t i = 0; i < size_; ++i)
+  for (int32_t i = 0; i < size_; ++i)
   {
     digit_[i] -= other.digit_[i];
   }
 
-  for (uint64_t i = 0; i < size_ - 1; ++i)
+  for (int32_t i = 0; i < size_ - 1; ++i)
   {
     if (digit_[i] < 0)
     {
@@ -282,10 +269,38 @@ std::string BigInt::to_string(const uint64_t &base = 10) const
   BigInt number(*this);
   while (number >= base)
   {
-    result += std::to_string((number % base).digit_[0]);
+    uint64_t digit = (number % base).digit_[0];
+    if (digit <= 9)
+    {
+      result += std::to_string(digit);
+    }
+    else if (digit >= 10 && digit <= 36)
+    {
+      result += (char)(digit + 'a' - 10);
+    }
+    else
+    {
+      uint64_t q = result.size();
+      result += '[' + std::to_string(digit) + ']';
+      std::reverse(result.begin() + q, result.end());
+    }
     number /= base;
   }
-  result += std::to_string((number % base).digit_[0]);
+  uint64_t digit = (number % base).digit_[0];
+  if (digit <= 9)
+  {
+    result += std::to_string(digit);
+  }
+  else if (digit >= 10 && digit <= 36)
+  {
+    result += (char)(digit + 'a' - 10);
+  }
+  else
+  {
+    uint64_t q = result.size();
+    result += '[' + std::to_string(digit) + ']';
+    std::reverse(result.begin() + q, result.end());
+  }
   std::reverse(result.begin(), result.end());
   return result;
 }

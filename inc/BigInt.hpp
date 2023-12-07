@@ -40,8 +40,10 @@ public:
   std::string to_string(const uint64_t &base) const;
 
 private:
-  const static uint64_t base_ = 1e9;
+  const static uint64_t base_ = 1e10;
   const static uint64_t size_ = 1000;
 
   int64_t digit_[size_];
+
+  void validateBrackets(const std::string &) const;
 };
