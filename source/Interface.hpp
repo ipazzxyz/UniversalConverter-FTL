@@ -16,11 +16,15 @@ public:
 
 private slots:
     void convert();
+    void import_num();
+    void export_num();
 
 private:
     QTextEdit *input;
     QTextEdit *output;
     QPushButton *button;
+    QPushButton *fromfile;
+    QPushButton *tofile;
     QSpinBox *final_base;
     QSpinBox *initial_base;
 

@@ -1,8 +1,9 @@
 #include "Interface.hpp"
-
+#include <QFile>
+#include <QFileDialog>
 Window::Window()
 {
-    setGeometry(0, 0, 510, 260);
+    setGeometry(0, 0, 610, 260);
 
     setStyleSheet("* {color: white;} QMainWindow {background-color: #2E3440;} QPushButton {background-color: #3B4252;} QTextEdit {border: 1px solid; border-radius:5px; background-color: #4C566A;} QSpinBox {background-color: #4C566A;}");
 
@@ -27,8 +28,18 @@ Window::Window()
 
     button = new QPushButton(this);
     button->setText("Convert");
-    button->setGeometry(5, 105, 500, 50);
+    button->setGeometry(5, 105, 600, 50);
     connect(button, &QPushButton::released, this, &Window::convert);
+
+    fromfile = new QPushButton(this);
+    fromfile->setText("Import");
+    fromfile->setGeometry(510, 5, 95, 95);
+    connect(fromfile, &QPushButton::released, this, &Window::import_num);
+
+    tofile = new QPushButton(this);
+    tofile->setText("Export");
+    tofile->setGeometry(510, 160, 95, 95);
+    connect(tofile, &QPushButton::released, this, &Window::export_num);
 
     createAndShowWindow();
 };
@@ -59,4 +70,24 @@ void Window::createAndShowWindow()
     create();
     setWindowTitle("UniversalConverter");
     show();
+}
+void Window::import_num()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("all Files ()"));
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        input->setText(QString(file.readAll()));
+        file.close();
+    }
+}
+void Window::export_num()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("all Files ()"));
+    QFile file(fileName);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        file.write(output->toPlainText().toUtf8());
+        file.close();
+    }
 }
