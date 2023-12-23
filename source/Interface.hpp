@@ -1,12 +1,8 @@
 #pragma once
-
-#include "BigInt.hpp"
-
 #include <QMainWindow>
 #include <QTextEdit>
 #include <QPushButton>
 #include <QSpinBox>
-
 class Window : public QMainWindow
 {
     Q_OBJECT

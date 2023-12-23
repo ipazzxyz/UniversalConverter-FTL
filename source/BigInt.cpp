@@ -1,5 +1,6 @@
 #include "BigInt.hpp"
 #include <algorithm>
+#include <iostream>
 BigInt::BigInt()
 {
   std::fill(digit_, digit_ + size_, 0);
@@ -21,21 +22,17 @@ BigInt::BigInt(const BigInt &other)
     digit_[i] = other.digit_[i];
   }
 }
-BigInt::BigInt(const uint64_t &initial_base, const std::string &number)
+BigInt::BigInt(const uint64_t &base, const std::string &number)
 {
-  if (base_ < 2)
+  if (base < 2)
   {
     throw std::runtime_error("Base should be greater than or equal to 2");
   }
-
   validateBrackets(number);
-
   std::fill(digit_, digit_ + size_, 0);
-
   for (int64_t i = 0; i < number.size(); ++i)
   {
     BigInt digit = 0;
-
     if (isdigit(number[i]))
     {
       digit = number[i] - '0';
@@ -57,7 +54,6 @@ BigInt::BigInt(const uint64_t &initial_base, const std::string &number)
           throw std::runtime_error(std::to_string(i + 1) +
                                    ": Not a '0'...'9' in brackets");
         }
-
         digit = digit * 10 + (number[i] - '0');
       }
     }
@@ -65,13 +61,13 @@ BigInt::BigInt(const uint64_t &initial_base, const std::string &number)
     {
       throw std::runtime_error(std::to_string(i + 1) + ": Invalid digit");
     }
-    if (digit >= initial_base)
+    if (digit >= base)
     {
       throw std::runtime_error(
           std::to_string(number.size() - i) +
           ": It is impossible to represent a digit in base");
     }
-    *this = *this * initial_base + digit;
+    *this = *this * base + digit;
   }
 }
 BigInt &BigInt::operator=(const BigInt &other)
@@ -162,7 +158,7 @@ BigInt &BigInt::operator/=(const BigInt &other)
 }
 BigInt BigInt::operator/(const BigInt &other) const
 {
-  BigInt l, r(*this);
+  BigInt l, r(*this + 1);
   while (r - l > 1)
   {
     BigInt m = getMid(l, r);
@@ -320,10 +316,12 @@ BigInt gcd(BigInt a, BigInt b)
   }
   while (a % b != 0)
   {
-    a += b;
-    b = a - b;
-    a -= b;
+    std::swap(a, b);
     b %= a;
   }
   return b;
+}
+BigInt lcd(BigInt a, BigInt b)
+{
+  return (a * b) / gcd(a, b);
 }

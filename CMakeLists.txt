@@ -6,6 +6,8 @@ qt_add_executable(UniversalConverter
     source/main.cpp
     source/BigInt.hpp
     source/BigInt.cpp
+    source/BigFraction.hpp
+    source/BigFraction.cpp
     source/Interface.hpp
     source/Interface.cpp
 )

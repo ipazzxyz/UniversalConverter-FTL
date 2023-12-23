@@ -1,11 +1,12 @@
 #include "Interface.hpp"
+#include "BigFraction.hpp"
 #include <QFile>
 #include <QFileDialog>
 Window::Window()
 {
     setGeometry(0, 0, 610, 260);
 
-    setStyleSheet("* {color: white;} QMainWindow {background-color: #2E3440;} QPushButton {background-color: #3B4252;} QTextEdit {border: 1px solid; border-radius:5px; background-color: #4C566A;} QSpinBox {background-color: #4C566A;}");
+    setStyleSheet("* {color: white} QWidget {background-color: #2E3440} QPushButton {background-color: #3B4252} QTextEdit {border: 1px solid; border-radius:5px; background-color: #4C566A} QSpinBox {background-color: #4C566A}");
 
     input = new QTextEdit(this);
     input->setGeometry(5, 5, 500, 95);
@@ -52,11 +53,21 @@ void Window::convert()
     {
         if (i == -1)
         {
-            output->setText(QString::fromStdString(BigInt(initial_base->value(), s).to_string(final_base->value())));
+            output->setText(QString::fromStdString(BigInt(initial_base->value(), s).toString(final_base->value())));
         }
         else
         {
-            /*output->setText(QString::fromStdString(BigInt(initial_base->value(), s.substr(0, i)).to_string(final_base->value()) + '.' + BigInt(initial_base->value(), s.substr(i + 1, s.size() - i - 1)).to_string(final_base->value())));*/
+            std::string fr(BigFraction(initial_base->value(), s.substr(i + 1, s.size() - i - 1)).toString(final_base->value()));
+            BigInt z(initial_base->value(), s.substr(0, i));
+            if (fr == "+")
+            {
+                ++z;
+                output->setText(QString::fromStdString(z.toString(final_base->value())));
+            }
+            else
+            {
+                output->setText(QString::fromStdString(z.toString(final_base->value()) + '.' + fr));
+            }
         }
     }
     catch (const std::runtime_error &)
