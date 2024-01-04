@@ -182,8 +182,6 @@ bool BigFraction::operator<=(const BigFraction &other) const
 }
 std::string BigFraction::toString(const uint64_t &base) const
 {
-  std::cout << numerator_.toString(10) << '/' << denominator_.toString(10)
-            << '\n';
   std::string result;
   if (*this >= 1)
   {
@@ -222,4 +220,5 @@ void BigFraction::readPeriod(uint64_t base, std::string number)
   numerator_ = BigInt(base, number);
   denominator_ = BigInt(base, std::string(number.size(), std::to_string(base - 1)[0]));
   numerator_ *= base;
+  reduce();
 }

@@ -175,12 +175,14 @@ BigInt BigInt::operator/(const BigInt &other) const
 }
 BigInt &BigInt::operator%=(const BigInt &other)
 {
-  return *this -= *this / other * other;
+  // return *this -= *this / other * other;
+  return *this;
 }
 BigInt BigInt::operator%(const BigInt &other) const
 {
-  BigInt result(*this);
-  return result %= other;
+  return *this - (*this / other) * other;
+  // BigInt result(*this);
+  // return result %= other;
 }
 bool BigInt::operator>(const BigInt &other) const
 {
@@ -306,20 +308,12 @@ BigInt getMid(const BigInt &a, const BigInt &b)
 }
 BigInt gcd(BigInt a, BigInt b)
 {
-  if (a < b)
+  if (a < 1)
   {
-    std::swap(a, b);
+    return b;
   }
-  if (b == 0)
-  {
-    return a;
-  }
-  while (a % b != 0)
-  {
-    std::swap(a, b);
-    b %= a;
-  }
-  return b;
+  BigInt mod = b % a;
+  return gcd(mod, a);
 }
 BigInt lcd(BigInt a, BigInt b)
 {

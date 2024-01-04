@@ -33,7 +33,7 @@ public:
 
 private:
   const static uint64_t base_ = 1e9, size_ = 5e1;
-  uint64_t digit_[size_];
+  __int128_t digit_[size_];
   void validateBrackets(const std::string &) const;
 };
 BigInt gcd(BigInt, BigInt);
