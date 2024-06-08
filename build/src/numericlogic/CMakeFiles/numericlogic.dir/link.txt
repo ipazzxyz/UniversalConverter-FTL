@@ -1,2 +1,0 @@
-/usr/bin/ar qc libnumericlogic.a CMakeFiles/numericlogic.dir/numericlogic_autogen/mocs_compilation.cpp.o CMakeFiles/numericlogic.dir/bigint.cpp.o CMakeFiles/numericlogic.dir/bigfraction.cpp.o
-/usr/bin/ranlib libnumericlogic.a
