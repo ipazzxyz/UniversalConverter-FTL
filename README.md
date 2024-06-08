@@ -1,9 +1,13 @@
 # UniversalConverter
 
-Number system converter with long arithmetic.
+Перевод чисел в различные системы счисления.
 
-Made for school project on 6.12.2023.
+## Сборка и запуск
 
 ```
-git clone https://github.com/ipazzxyz/UniversalConverter.git && cd UniversalConverter && mkdir build && cd build && cmake .. && make && ./UniversalConverter
+git clone https://github.com/ipazzxyz/UniversalConverter.git
+cd UniversalConverter
+cmake .
+make
+src/app/universalconverter
 ```

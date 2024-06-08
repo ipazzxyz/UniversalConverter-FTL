@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app/universalconverter_autogen/include -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -g -std=gnu++17 -o CMakeFiles/universalconverter.dir/universalconverter_autogen/mocs_compilation.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app/universalconverter_autogen/mocs_compilation.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app/universalconverter_autogen/mocs_compilation.cpp",
+  "output": "src/app/CMakeFiles/universalconverter.dir/universalconverter_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app/universalconverter_autogen/include -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -g -std=gnu++17 -o CMakeFiles/universalconverter.dir/main.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/app/main.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/app/main.cpp",
+  "output": "src/app/CMakeFiles/universalconverter.dir/main.cpp.o"
+},
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/app/universalconverter_autogen/include -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -g -std=gnu++17 -o CMakeFiles/universalconverter.dir/mainwindow.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/app/mainwindow.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/app/mainwindow.cpp",
+  "output": "src/app/CMakeFiles/universalconverter.dir/mainwindow.cpp.o"
+},
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic/numericlogic_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/numericlogic.dir/numericlogic_autogen/mocs_compilation.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic/numericlogic_autogen/mocs_compilation.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic/numericlogic_autogen/mocs_compilation.cpp",
+  "output": "src/numericlogic/CMakeFiles/numericlogic.dir/numericlogic_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic/numericlogic_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/numericlogic.dir/bigint.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigint.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigint.cpp",
+  "output": "src/numericlogic/CMakeFiles/numericlogic.dir/bigint.cpp.o"
+},
+{
+  "directory": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -I/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/build/src/numericlogic/numericlogic_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/numericlogic.dir/bigfraction.cpp.o -c /home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigfraction.cpp",
+  "file": "/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigfraction.cpp",
+  "output": "src/numericlogic/CMakeFiles/numericlogic.dir/bigfraction.cpp.o"
+}
+]

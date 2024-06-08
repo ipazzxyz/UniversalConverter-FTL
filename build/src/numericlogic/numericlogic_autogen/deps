@@ -1,0 +1,7 @@
+numericlogic_autogen/timestamp: \
+	/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/CMakeLists.txt \
+	/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigfraction.cpp \
+	/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigfraction.hpp \
+	/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigint.cpp \
+	/home/ipazzxyz/Documents/Code/UniversalConverter-FTL/src/numericlogic/bigint.hpp \
+	/usr/bin/cmake
